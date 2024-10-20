@@ -4,13 +4,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "http-server src -0"
-
+    "dev": "webpack serve --mode development --open",
+    "prebuild": "if exist dist (rmdir /s /Q dist)",
+    "build": "webpack --mode production",
+    "postbuild": "copy public\\index.html dist\\index.html && xcopy /si public\\css dist\\css"
   },
   "author": "ayoub",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "@babel/core": "^7.25.8",
+    "@babel/preset-env": "^7.25.8",
+    "@babel/preset-react": "^7.25.7",
+    "babel-loader": "^9.2.1",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
